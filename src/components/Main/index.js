@@ -21,21 +21,18 @@ const Main = () => {
     .then(movieJson => {
       setMovie(movieJson);
       setLoading(false);
-      // console.log(query);
     });
   }, [query]);
 
   if(loading) return "Loading";
 
-  // console.log(movie);
-
   return (
-    <Flex w="100%" h="calc(100vh)" justify="center" align={{base: "flex-start", lg: "center"}}>
-      <Flex w={{base: "100%", lg: "50%"}} minH="40%" bg="#161A1D" p={{base:"0", lg: "20px"}} borderRadius={{base:"0", lg: "24px"}} direction="column" rowGap={{base: "", lg: "16px"}}>
+    <Flex w={"100%"} h={"calc(100vh)"} overflowY={{base: "hidden", lg: "auto"}} justify={"center"} align={{base: "flex-start", lg: "center"}}>
+      <Flex w={{base: "100%", lg: "50%"}} minH={"50%"} direction={"column"} bg={"#161A1D"} p={{base:"0", lg: "20px"}} borderRadius={{base:"0", lg: "24px"}} rowGap={{base: "0", lg: "16px"}}>
         <MovieSearch setMovieTitle={setTitle} />
-        <Flex w="100%" direction={{base: "column", lg: "row"}} columnGap={{base: "0", lg: "16px"}}>
+        <Flex w={"100%"} direction={{base: "column", lg: "row"}} columnGap={{base: "0", lg: "16px"}}>
           <MovieImage source={movie.Poster} alter={movie.Title} />
-          <MovieInfo title={movie.Title} rating={movie.Ratings[0]} />
+          <MovieInfo title={movie.Title} rating={movie.Ratings[0]} rated={movie.Rated} runTime={movie.Runtime} year={movie.Year} genre={movie.Genre} cast={movie.Actors} plot={movie.Plot} />
         </Flex>
       </Flex>
     </Flex>

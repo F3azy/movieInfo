@@ -1,9 +1,26 @@
 import React from 'react';
-import { Image } from '@chakra-ui/react';
+import { Flex, Image } from '@chakra-ui/react';
 
 const MovieImage = ({source, alter}) => {
   return (
-      <Image w={{base: "100%", lg: "auto"}} minW="100px" src={source} alt={alter} borderRadius={{base: "0", lg: "24px"}} />
+    <>
+    {(source!=="N/A") ? 
+    <Image 
+      w={{base: "100%", lg: "auto"}} 
+      maxH={{lg:"480px"}}
+      src={source} 
+      alt={alter} 
+      borderRadius={{base: "0", lg: "24px"}} 
+    />
+    :
+    <Image 
+      w={{base: "100%", lg: "300px"}} 
+      minH={"300px"}
+      src={source} 
+      alt={alter} 
+    />
+    }
+    </>
   )
 };
 
