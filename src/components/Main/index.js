@@ -8,6 +8,7 @@ const Main = () => {
   const [title, setTitle] = useState(() => {return "wednesday"});
   const [query, setQuery] = useState(() => {return `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=`+title});
   const [loading, setLoading] = useState(() => {return true});
+  const [notFound, setNotFound] = useState(() => {return false});
   const [movie, setMovie] = useState(() => {return null});
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const Main = () => {
 
   useEffect(() => {
     setLoading(true);
+    setNotFound(false);
     fetch(query)
     .then(response => response.json())
     .then(movieJson => {
@@ -24,12 +26,20 @@ const Main = () => {
       }, 1000);
       setMovie(movieJson);
       return () => clearTimeout(timer);
+    })
+    .catch(err => {
+      console.log("Movie not Found",err);
+      setNotFound(true);
+    })
+    .catch(err => {
+      console.log("Movie not Found", err);
+      setNotFound(true);
     });
   }, [query]);
 
   return (
     <Flex w={"100%"} h={"calc(100vh)"} overflowY={{base: "hidden", lg: "auto"}} justify={"center"} align={{base: "flex-start", lg: "center"}}>
-      <Flex w={{base: "100%", lg: "50%"}} minH={"50%"} direction={"column"} bg={"#161A1D"} p={{base:"0", lg: "20px"}} borderRadius={{base:"0", lg: "24px"}} rowGap={{base: "0", lg: "16px"}}>
+      <Flex w={{base: "100%", lg: "50%"}} h={{base: "calc(100vh)", lg: "auto"}} minH={"50%"} direction={"column"} bg={"#161A1D"} p={{base:"0", lg: "20px"}} borderRadius={{base:"0", lg: "24px"}} rowGap={{base: "0", lg: "16px"}}>
         <MovieSearch setMovieTitle={setTitle} />
         
         {loading ? 
