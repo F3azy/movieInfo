@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "env-cmd -f .env.production.local react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "env-cmd -f .env.production.local react-scripts build",
