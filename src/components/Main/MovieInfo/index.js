@@ -25,7 +25,7 @@ const MovieInfo = ({title, rating, rated, runTime, year, genre, cast, plot}) => 
 
   function show() {
     setShowInfo(true);
-    setNewBottom(window.innerHeight/1.9);
+    setNewBottom(window.innerHeight/2);
   }
 
   function unShow() {
@@ -34,7 +34,7 @@ const MovieInfo = ({title, rating, rated, runTime, year, genre, cast, plot}) => 
   }
 
   return (
-    <Flex grow={1} h={{base: window.innerHeight/1.5, sm: "86vh", lg: "auto"}} borderTopRadius={"16px"} bg={{base: "#161A1D"}} position={{base: "relative", md: "static"}} bottom={{base: newBottom, sm: 0}} transition={"bottom 1s"} overflowY={{base: "scroll", lg: "auto"}} direction={"column"} rowGap={"16px"} p={{base: "0 8px", lg: "0"}}>
+    <Flex grow={1} h={{base: window.innerHeight/1.6, sm: "86vh", lg: "auto"}} borderTopRadius={"16px"} bg={{base: "#161A1D"}} position={{base: "relative", md: "static"}} bottom={{base: newBottom, sm: 0}} transition={"bottom 1s"} overflowY={{base: "scroll", lg: "auto"}} direction={"column"} rowGap={"16px"} p={{base: "0 8px", lg: "0"}}>
       <Flex display={{base: "flex", sm: "none", lg: "none"}} position={"sticky"} bg={{base: "#161A1D"}} top={0} w={"100%"} justify={"center"} m={"0 auto"} borderBottom={"solid 1px"} cursor="pointer" onClick={ showInfo ? unShow : show}>
         <Icon as={showInfo ? ChevronDownIcon : ChevronUpIcon} boxSize={10} />
       </Flex>
