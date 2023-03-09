@@ -7,13 +7,13 @@ import MovieNotFound from './MovieNotFound';
 
 const Main = () => {
   const [title, setTitle] = useState(() => {return "wednesday"});
-  const [query, setQuery] = useState(() => {return `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=`+title});
+  const [query, setQuery] = useState(() => {return `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=`+title});
   const [loading, setLoading] = useState(() => {return true});
   const [notFound, setNotFound] = useState(() => {return false});
   const [movie, setMovie] = useState(() => {return null});
 
   useEffect(() => {
-    setQuery(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=`+title);
+    setQuery(`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=`+title);
   }, [title]);
 
   useEffect(() => {
