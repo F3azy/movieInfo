@@ -3,7 +3,7 @@ import { Icon } from '@chakra-ui/react';
 
 const RateStarIcon = ({Offset, id}) => {
   return (
-    <Icon width="10" height="10" viewBox="0 0 96 91" xmlns="http://www.w3.org/2000/svg">
+    <Icon width="8" height="8" viewBox="0 0 96 91" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id={`grad${id}`} x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset={Offset} style={{stopColor: "#BA181B", stopOpacity: "1"}} />
