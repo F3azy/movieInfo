@@ -26,7 +26,7 @@ const MovieInfo = ({title, rating, rated, runTime, year, genre, cast, plot}) => 
 
   function show() {
     setShowInfo(true);
-    setNewBottom(550);
+    setNewBottom(500);
     setNewHeight(550);
   }
 

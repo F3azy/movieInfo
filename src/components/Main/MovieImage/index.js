@@ -16,7 +16,7 @@ const MovieImage = ({source, alter}) => {
     :
     <Image 
       w={{base: "30%", lg: "300px"}} 
-      minH={"500px"}
+      minH={"550px"}
       src={source} 
       alt={alter} 
     />
