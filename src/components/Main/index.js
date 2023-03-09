@@ -34,8 +34,6 @@ const Main = () => {
     });
   }, [query]);
 
-  console.log(movie);
-
   return (
     <Flex w={"100%"} h={"calc(100vh)"} overflowY={{base: "hidden", lg: "auto"}} justify={"center"} align={{base: "flex-start", lg: "center"}}>
       <Flex w={{base: "100%", lg: "90%", xl: "70%", "2xl": "50%"}} h={{base: "calc(100vh)", lg: "auto"}} minH={"50%"} direction={"column"} bg={"#161A1D"} p={{base:"0", lg: "20px"}} borderRadius={{base:"0", lg: "24px"}} rowGap={{base: "0", lg: "16px"}}>
