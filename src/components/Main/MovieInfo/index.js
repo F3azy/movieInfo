@@ -6,7 +6,7 @@ import SmallInfo from './SmallInfo';
 
 const MovieInfo = ({title, rating, rated, runTime, year, genre, cast, plot}) => {
   const [showInfo, setShowInfo] = useState(() => {return false});
-  const [newBottom, setNewBottom] = useState(() => {return 0});
+  const [newBottom, setNewBottom] = useState(() => {return 4});
 
   const information = useState(() => { return [
     {
@@ -30,7 +30,7 @@ const MovieInfo = ({title, rating, rated, runTime, year, genre, cast, plot}) => 
 
   function unShow() {
     setShowInfo(false);
-    setNewBottom(0);
+    setNewBottom(4);
   }
 
   return (
