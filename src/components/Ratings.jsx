@@ -1,5 +1,5 @@
 import { React, useState, useEffect} from 'react';
-import RateStarIcon from '../../../../icons/RateStarIcon';
+import RateStarIcon from '../icons/RateStarIcon';
 import { Flex, Text } from '@chakra-ui/react';
 
 const Ratings = ({rating}) => {
