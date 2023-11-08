@@ -1,7 +1,6 @@
 import { Flex, Heading, Text, Icon, Divider } from "@chakra-ui/react";
 import { React, useState } from "react";
 import Ratings from "./Ratings";
-import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import SmallInfo from "./SmallInfo";
 
 const MovieInfo = ({
@@ -14,9 +13,6 @@ const MovieInfo = ({
   cast,
   plot,
 }) => {
-  const [showInfo, setShowInfo] = useState(false);
-  const [newBottom, setNewBottom] = useState(4);
-  const [newHeight, setNewHeight] = useState(90);
 
   const information = useState([
     {
@@ -33,56 +29,21 @@ const MovieInfo = ({
     },
   ]);
 
-  function show() {
-    setShowInfo(true);
-    setNewBottom(500);
-    setNewHeight(550);
-  }
-
-  function unShow() {
-    setShowInfo(false);
-    setNewBottom(4);
-    setNewHeight(90);
-  }
-
   return (
     <Flex
-      grow={1}
-      borderTopRadius="16px"
-      bg={{ base: "#161A1D" }}
-      position={{ base: "relative", md: "static" }}
-      bottom={{ base: newBottom, sm: 0 }}
-      transition="bottom 1s"
-      overflowY={{ base: "scroll", lg: "auto" }}
+      bg={{ base: "#161A1D99", lg: "#161A1D"}}
       direction="column"
-      p={{ base: "0 8px", lg: "0" }}
+      p={{ base: "20px", md: "32px", lg: "0" }}
+      borderTopRadius="24px"
+      minH="50vh"
     >
       <Flex
-        display={{ base: "flex", sm: "none", lg: "none" }}
-        position="sticky"
-        bg={{ base: "#161A1D" }}
-        top={0}
-        w="100%"
-        justify="center"
-        m="0 auto"
-        cursor="pointer"
-        onClick={showInfo ? unShow : show}
-      >
-        <Icon as={showInfo ? ChevronDownIcon : ChevronUpIcon} boxSize={10} />
-      </Flex>
-      <Divider display={{ base: "flex", sm: "none", lg: "none" }} />
-      <Flex
-        h={{ base: newHeight, sm: "86vh", lg: "auto" }}
-        transition="height 1s"
-        borderTopRadius="16px"
-        bg={{ base: "#161A1D" }}
-        overflowY={{ base: "scroll", lg: "auto" }}
         direction="column"
-        rowGap={{ base: "8px", md: "16px" }}
+        rowGap={{ base: "16px", md: "20px", lg: "24px" }}
       >
         <Heading size="2xl">{title}</Heading>
         {rating && <Ratings rating={rating}></Ratings>}
-        <Flex justify="space-between" fontSize="20px" fontWeight={100}>
+        <Flex justify="space-between" fontSize="20px" fontWeight="100">
           <Text>{rated}</Text>
           <Text>{runTime}</Text>
           <Text>{year}</Text>

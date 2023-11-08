@@ -3,7 +3,7 @@ import { Flex, Heading, Text } from "@chakra-ui/react";
 
 const SmallInfo = ({ infoTitle, content }) => {
   return (
-    <Flex direction="column" rowGap="4px">
+    <Flex direction="column">
       <Heading size="lg">{infoTitle}:</Heading>
       <Text fontSize="20px" align="justify" fontWeight={100}>
         {content}
