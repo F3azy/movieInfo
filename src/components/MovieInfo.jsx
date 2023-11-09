@@ -31,6 +31,7 @@ const MovieInfo = ({
 
   return (
     <Flex
+      w="100%"
       bg={{ base: "#161A1D99", lg: "#161A1D"}}
       direction="column"
       p={{ base: "20px", md: "32px", lg: "0" }}

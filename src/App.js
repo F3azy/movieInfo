@@ -1,9 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { theme } from "./styles/theme";
 import "./styles/globals.css";
-import { Box, ChakraProvider, Flex, Spinner } from "@chakra-ui/react";
+import { Box, ChakraProvider, Flex, Spinner, Image } from "@chakra-ui/react";
 import {
-  MovieImage,
   MovieInfo,
   MovieSearchInput,
   MovieNotFound,
@@ -34,7 +33,7 @@ function App() {
   }, [query]);
 
   useEffect(() => {
-    if (movie && movie.Response !== "False") setBgImg(movie.Poster);
+    if (movie && movie.Response !== "False" && movie.Poster !== 'N/A') setBgImg(movie.Poster);
   }, [movie]);
 
   return (
@@ -44,12 +43,12 @@ function App() {
         bgSize="cover"
         bgPosition="center"
       >
-        <Flex 
-        minH="calc(100vh)"
-        justify="center"
-        align="center"       
-        backdropFilter={{ base: "auto" }}
-        backdropBlur={{ base: "70px" }}
+        <Flex
+          minH="calc(100vh)"
+          justify="center"
+          align="center"
+          backdropFilter={{ base: "auto" }}
+          backdropBlur={{ base: "70px" }}
         >
           <Flex
             w={{ base: "100%", lg: "90%", xl: "70%", "2xl": "50%" }}
@@ -82,7 +81,14 @@ function App() {
                 columnGap={{ base: "0", lg: "16px" }}
                 rowGap={{ base: "20px", lg: "0" }}
               >
-                <MovieImage source={movie.Poster} alter={movie.Title} />
+                <Image
+                  w={{ base: "80%", md: "60%", lg: movie.Poster === 'N/A' ? "60%" : "auto" }}
+                  m={{base: "0 auto", lg: "0"}}
+                  minH="50vh"
+                  src={movie.Poster}
+                  alt={movie.Title}
+                  borderRadius="16px"
+                />
                 <MovieInfo
                   title={movie.Title}
                   rating={movie.Ratings[0]}
