@@ -31,7 +31,7 @@ const SearchInput = ({ setMovieTitle }) => {
 
   return (
     <InputGroup
-      size={"lg"}
+      size="lg"
       bg="#161A1D"
       position="sticky"
       top={0}

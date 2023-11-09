@@ -32,11 +32,12 @@ const MovieInfo = ({
   return (
     <Flex
       w="100%"
-      bg={{ base: "#161A1D99", lg: "#161A1D"}}
+      minH="50vh"
       direction="column"
       p={{ base: "20px", md: "32px", lg: "0" }}
+      bg={{ base: "linear-gradient(#161A1D75, #161A1D99)", lg: "#161A1D"}}
       borderTopRadius="24px"
-      minH="50vh"
+      boxShadow={{base: "0 8px 32px 0 #00000030", lg: "none"}}
     >
       <Flex
         direction="column"
