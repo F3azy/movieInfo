@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
-const MovieSearchInput = ({ setMovieTitle }) => {
+const SearchInput = ({ setMovieTitle }) => {
   const [input, setInput] = useState("");
 
   function getName(ev) {
@@ -22,7 +22,14 @@ const MovieSearchInput = ({ setMovieTitle }) => {
   }
 
   return (
-    <InputGroup size={"lg"} bg="#161A1D" position="sticky" top={0} zIndex={10}>
+    <InputGroup
+      size={"lg"}
+      bg="#161A1D"
+      position="sticky"
+      top={0}
+      zIndex={10}
+      role="group"
+    >
       <InputLeftElement
         pointerEvents={"none"}
         children={<SearchIcon color="#A4161A" />}
@@ -33,7 +40,7 @@ const MovieSearchInput = ({ setMovieTitle }) => {
         borderWidth="2px"
         borderColor="#A4161A"
         focusBorderColor="#E5383B"
-        _hover={{ borderColor: "#BA181B" }}
+        _groupHover={{ borderColor: "#BA181B" }}
         type="text"
         color="#E5383B"
         placeholder="Movie title..."
@@ -51,8 +58,8 @@ const MovieSearchInput = ({ setMovieTitle }) => {
           w="80px"
           size="lg"
           bgColor="#A4161A"
-          _hover={{ bgColor: "#BA181B" }}
-          _active={{ bgColor: "#660708" }}
+          _groupHover={{ bgColor: "#BA181B" }}
+          _groupActive={{ bgColor: "#660708" }}
           onClick={searchMovie}
         >
           Search
@@ -62,4 +69,4 @@ const MovieSearchInput = ({ setMovieTitle }) => {
   );
 };
 
-export default MovieSearchInput;
+export default SearchInput;

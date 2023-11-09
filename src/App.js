@@ -4,7 +4,7 @@ import "./styles/globals.css";
 import { Box, ChakraProvider, Flex, Spinner, Image } from "@chakra-ui/react";
 import {
   MovieInfo,
-  MovieSearchInput,
+  SearchInput,
   MovieNotFound,
 } from "./components";
 
@@ -60,7 +60,7 @@ function App() {
             borderRadius={{ base: "0", lg: "36px" }}
             rowGap="20px"
           >
-            <MovieSearchInput setMovieTitle={setTitle} />
+            <SearchInput setMovieTitle={setTitle} />
 
             {loading ? (
               <Flex
