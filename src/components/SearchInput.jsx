@@ -15,6 +15,14 @@ const SearchInput = ({ setMovieTitle }) => {
     setInput(ev.target.value);
   }
 
+  function searchOnEnter(ev) {
+    if (ev.key === "Enter") {
+      ev.preventDefault();
+      ev.target.blur();
+      searchMovie();
+    }
+  }
+
   function searchMovie() {
     if (input !== "") {
       setMovieTitle(input.toLowerCase());
@@ -47,9 +55,7 @@ const SearchInput = ({ setMovieTitle }) => {
         _placeholder={{ opacity: 0.8, color: "#F5F3F4" }}
         value={input}
         onChange={getName}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") searchMovie();
-        }}
+        onKeyDown={searchOnEnter}
       />
 
       <InputRightElement w="80px">
