@@ -1,38 +1,38 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Box, Flex, Spinner, Image } from "@chakra-ui/react";
-import {
-  MovieInfo,
-  SearchInput,
-  MovieNotFound,
-} from "../components";
+import { MovieInfo, SearchInput, MovieNotFound } from "../components";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Home = () => {
-    const [title, setTitle] = useState("wednesday");
-    const query =
-      `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=` +
-      title;
-  
-    const [loading, setLoading] = useState(true);
-    const [notFound, setNotFound] = useState(false);
-    const [movie, setMovie] = useState(null);
-    const [bgImg, setBgImg] = useState(null);
-  
-    useEffect(() => {
-      setLoading(true);
-      setNotFound(false);
-      fetch(query)
-        .then((response) => response.json())
-        .then((movieJson) => {
-          setLoading(false);
-          setMovie(movieJson);
-  
-          if (movieJson.Response !== "True") setNotFound(true);
-        });
-    }, [query]);
-  
-    useEffect(() => {
-      if (movie && movie.Response !== "False" && movie.Poster !== 'N/A') setBgImg(movie.Poster);
-    }, [movie]);
+  const { title = "wednesday" } = useParams();
+  const navigate = useNavigate();
+
+  const query =
+    `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=` +
+    title;
+
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
+  const [movie, setMovie] = useState(null);
+  const [bgImg, setBgImg] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    setNotFound(false);
+    fetch(query)
+      .then((response) => response.json())
+      .then((movieJson) => {
+        setLoading(false);
+        setMovie(movieJson);
+
+        if (movieJson.Response !== "True") setNotFound(true);
+      });
+  }, [query]);
+
+  useEffect(() => {
+    if (movie && movie.Response !== "False" && movie.Poster !== "N/A")
+      setBgImg(movie.Poster);
+  }, [movie]);
 
   return (
     <Box bgImage={bgImg && `url(${bgImg})`} bgSize="cover" bgPosition="center">
@@ -53,7 +53,7 @@ const Home = () => {
           borderRadius={{ base: "0", lg: "36px" }}
           rowGap="20px"
         >
-          <SearchInput setMovieTitle={setTitle} />
+          <SearchInput moveTo={navigate} />
 
           {loading ? (
             <Flex w="100%" minH="90%" justify="center" align="center" p="16px">

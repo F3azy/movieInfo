@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
-const SearchInput = ({ setMovieTitle }) => {
+const SearchInput = ({ moveTo }) => {
   const [input, setInput] = useState("");
 
   function getName(ev) {
@@ -25,7 +25,7 @@ const SearchInput = ({ setMovieTitle }) => {
 
   function searchMovie() {
     if (input !== "") {
-      setMovieTitle(input.toLowerCase());
+      moveTo("/"+input.toLowerCase());
     }
   }
 
