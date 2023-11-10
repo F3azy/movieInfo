@@ -70,8 +70,7 @@ const Home = () => {
             >
               <Image
                 w={{
-                  base: "80%",
-                  md: "60%",
+                  base: "auto",
                   lg: movie.Poster === "N/A" ? "60%" : "auto",
                 }}
                 m={{ base: "0 auto", lg: "0" }}
