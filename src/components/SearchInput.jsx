@@ -35,7 +35,7 @@ const SearchInput = ({ moveTo, dominantColor, setDominant }) => {
 
   useLayoutEffect(() => {
     if (compareHex(dominantColor, "272B2E")) {
-      if (compareHex(dominantColor, "aa687a", "<")) {
+      if (compareHex(dominantColor, "#935163", "<")) {
         setInputColor(brighterHEX(dominantColor, 30));
         setInputBrighterColor(brighterHEX(dominantColor, 55));
         setInputDarkerColor(darkerHEX(dominantColor, 10));
@@ -68,6 +68,7 @@ const SearchInput = ({ moveTo, dominantColor, setDominant }) => {
         borderColor={inputColor}
         focusBorderColor={inputColor}
         _groupHover={{ borderColor: inputBrighterColor }}
+        _groupActive={{ borderColor: inputDarkerColor }}
         type="text"
         placeholder="Movie title..."
         _placeholder={{ opacity: 0.8, color: "#F5F3F4" }}
@@ -83,7 +84,7 @@ const SearchInput = ({ moveTo, dominantColor, setDominant }) => {
           size="lg"
           bgColor={inputColor}
           _groupHover={{ bgColor: inputBrighterColor }}
-          active={{ bgColor: inputDarkerColor }}
+          _groupActive={{ bgColor: inputDarkerColor }}
           onClick={searchMovie}
         >
           Search

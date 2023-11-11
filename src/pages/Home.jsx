@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { Box, Flex, Spinner, Image } from "@chakra-ui/react";
 import { MovieInfo, SearchInput, MovieNotFound } from "../components";
 import { useNavigate, useParams } from "react-router-dom";
@@ -30,7 +30,7 @@ const Home = () => {
       });
   }, [query]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (movie && movie.Response !== "False" && movie.Poster !== "N/A")
       setBgImg(movie.Poster);
   }, [movie]);
@@ -78,7 +78,7 @@ const Home = () => {
                 }}
                 m={{ base: "0 auto", lg: "0" }}
                 minH="50vh"
-                src={movie.Poster}
+                src={bgImg}
                 alt={movie.Title}
                 borderRadius="16px"
               />
