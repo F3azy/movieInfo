@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Box, Flex, Spinner, Image } from "@chakra-ui/react";
 import { MovieInfo, SearchInput, MovieNotFound } from "../components";
 import { useNavigate, useParams } from "react-router-dom";
+import useImageDominantColor from '../hooks/useImageDominantColor'
 
 const Home = () => {
   const { title = "wednesday" } = useParams();
@@ -34,6 +35,8 @@ const Home = () => {
       setBgImg(movie.Poster);
   }, [movie]);
 
+  const [color, setColor]= useImageDominantColor(bgImg);
+
   return (
     <Box bgImage={bgImg && `url(${bgImg})`} bgSize="cover" bgPosition="center">
       <Flex
@@ -53,7 +56,7 @@ const Home = () => {
           borderRadius={{ base: "0", lg: "36px" }}
           rowGap="20px"
         >
-          <SearchInput moveTo={navigate} />
+          <SearchInput moveTo={navigate} dominantColor={color} setDominant={setColor} />
 
           {loading ? (
             <Flex w="100%" minH="90%" justify="center" align="center" p="16px">

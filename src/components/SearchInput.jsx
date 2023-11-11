@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import {
   Button,
   InputGroup,
@@ -7,9 +7,13 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import { brighterHEX, compareHex, darkerHEX } from "../utils/color";
 
-const SearchInput = ({ moveTo }) => {
+const SearchInput = ({ moveTo, dominantColor, setDominant }) => {
   const [input, setInput] = useState("");
+  const [inputColor, setInputColor] = useState("transparent");
+  const [inputBrighterColor, setInputBrighterColor] = useState("");
+  const [inputDarkerColor, setInputDarkerColor] = useState("");
 
   function getName(ev) {
     setInput(ev.target.value);
@@ -25,9 +29,24 @@ const SearchInput = ({ moveTo }) => {
 
   function searchMovie() {
     if (input !== "") {
-      moveTo("/"+input.toLowerCase());
+      moveTo("/" + input.toLowerCase());
     }
   }
+
+  useLayoutEffect(() => {
+    if (compareHex(dominantColor, "272B2E")) {
+      if (compareHex(dominantColor, "aa687a", "<")) {
+        setInputColor(brighterHEX(dominantColor, 30));
+        setInputBrighterColor(brighterHEX(dominantColor, 55));
+        setInputDarkerColor(darkerHEX(dominantColor, 10));
+      } else {
+        setDominant(darkerHEX(dominantColor, 10));
+      }
+    } else {
+      setDominant(brighterHEX(dominantColor, 10));
+    }
+    // eslint-disable-next-line
+  }, [dominantColor]);
 
   return (
     <InputGroup
@@ -40,17 +59,16 @@ const SearchInput = ({ moveTo }) => {
     >
       <InputLeftElement
         pointerEvents={"none"}
-        children={<SearchIcon color="#A4161A" />}
+        children={<SearchIcon color={inputColor} />}
       />
 
       <Input
         borderRadius={{ base: "0", lg: "16px" }}
         borderWidth="2px"
-        borderColor="#A4161A"
-        focusBorderColor="#E5383B"
-        _groupHover={{ borderColor: "#BA181B" }}
+        borderColor={inputColor}
+        focusBorderColor={inputColor}
+        _groupHover={{ borderColor: inputBrighterColor }}
         type="text"
-        color="#E5383B"
         placeholder="Movie title..."
         _placeholder={{ opacity: 0.8, color: "#F5F3F4" }}
         value={input}
@@ -63,9 +81,9 @@ const SearchInput = ({ moveTo }) => {
           borderRadius={{ base: "0", lg: "0 16px 16px 0" }}
           w="80px"
           size="lg"
-          bgColor="#A4161A"
-          _groupHover={{ bgColor: "#BA181B" }}
-          _groupActive={{ bgColor: "#660708" }}
+          bgColor={inputColor}
+          _groupHover={{ bgColor: inputBrighterColor }}
+          active={{ bgColor: inputDarkerColor }}
           onClick={searchMovie}
         >
           Search
