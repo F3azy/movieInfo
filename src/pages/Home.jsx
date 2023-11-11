@@ -78,7 +78,7 @@ const Home = () => {
                 }}
                 m={{ base: "0 auto", lg: "0" }}
                 minH="50vh"
-                src={bgImg}
+                src={movie.Poster}
                 alt={movie.Title}
                 borderRadius="16px"
               />
