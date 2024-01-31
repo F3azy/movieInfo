@@ -45,8 +45,7 @@ const SearchInput = ({ moveTo, dominantColor, setDominant }) => {
     } else {
       setDominant(brighterHEX(dominantColor, 10));
     }
-    // eslint-disable-next-line
-  }, [dominantColor]);
+  }, [dominantColor, setDominant]);
 
   return (
     <InputGroup

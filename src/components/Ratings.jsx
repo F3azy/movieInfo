@@ -23,8 +23,7 @@ const Ratings = ({ rating }) => {
       for (let i = 0; i < 5 - Math.ceil(rate); i++)
         setRateStars((old) => [...old, "0%"]);
 
-    // eslint-disable-next-line
-  }, []);
+  }, [rating]);
 
   return (
     <Flex align="center" columnGap={{ base: "4px", md: "8px" }}>
