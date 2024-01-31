@@ -19,10 +19,8 @@ const Ratings = ({ rating }) => {
         (rate % parseInt(rate)).toFixed(2) * 100 + "%",
       ]);
 
-    if (rateStars.length < 5)
-      for (let i = 0; i < 5 - Math.ceil(rate); i++)
-        setRateStars((old) => [...old, "0%"]);
-
+    for (let i = 0; i < 5 - Math.ceil(rate); i++)
+      setRateStars((old) => [...old, "0%"]);
   }, [rating]);
 
   return (
