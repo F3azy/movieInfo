@@ -1,6 +1,6 @@
 # Movie Info
 
-This project was created to learn the basics of react and fetching data, later added more functionality like search parameters with react router dom, checking the imgae dominant color (for fun) and adjusted the UI.
+This project was created to learn the basics of react and fetching data, later added more functionality like url parameters with react router dom, checking the imgae dominant color (for fun) and adjusted the UI.
 
 ## Technologies
 
