@@ -2,7 +2,6 @@ import { useState, useLayoutEffect } from "react";
 import { Box, Flex, Spinner, Image } from "@chakra-ui/react";
 import { MovieInfo, SearchInput, Error } from "../components";
 import { useParams } from "react-router-dom";
-import useImageDominantColor from "../hooks/useImageDominantColor";
 import useFetch from "../hooks/useFetch";
 
 const Home = () => {
@@ -19,11 +18,8 @@ const Home = () => {
   const [bgImg, setBgImg] = useState(null);
 
   useLayoutEffect(() => {
-    if (movie && movie.Poster !== "N/A")
-      setBgImg(movie.Poster);
+    if (movie && movie.Poster !== "N/A") setBgImg(movie.Poster);
   }, [movie]);
-
-  const [color, setColor] = useImageDominantColor(bgImg);
 
   return (
     <Box bgImage={bgImg && `url(${bgImg})`} bgSize="cover" bgPosition="center">
@@ -44,10 +40,7 @@ const Home = () => {
           borderRadius={{ base: "0", lg: "36px" }}
           rowGap="20px"
         >
-          <SearchInput
-            dominantColor={color}
-            setDominant={setColor}
-          />
+          <SearchInput bgImg={bgImg} />
 
           {loading && (
             <Flex w="100%" minH="90%" justify="center" align="center" p="16px">

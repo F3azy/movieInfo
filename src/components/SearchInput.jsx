@@ -9,14 +9,17 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import { brighterHEX, compareHex, darkerHEX } from "../utils/color";
 import { useNavigate } from "react-router-dom";
+import useImageDominantColor from "../hooks/useImageDominantColor";
 
-const SearchInput = ({ dominantColor, setDominant }) => {
+const SearchInput = ({ bgImg }) => {
   const [input, setInput] = useState("");
   const [inputColor, setInputColor] = useState("transparent");
   const [inputBrighterColor, setInputBrighterColor] = useState("");
   const [inputDarkerColor, setInputDarkerColor] = useState("");
 
   const navigate = useNavigate();
+
+  const [color, setColor] = useImageDominantColor(bgImg);
 
   function getName(ev) {
     setInput(ev.target.value);
@@ -37,18 +40,18 @@ const SearchInput = ({ dominantColor, setDominant }) => {
   }
 
   useLayoutEffect(() => {
-    if (compareHex(dominantColor, "272B2E")) {
-      if (compareHex(dominantColor, "#935163", "<")) {
-        setInputColor(brighterHEX(dominantColor, 30));
-        setInputBrighterColor(brighterHEX(dominantColor, 55));
-        setInputDarkerColor(darkerHEX(dominantColor, 10));
+    if (compareHex(color, "272B2E")) {
+      if (compareHex(color, "#935163", "<")) {
+        setInputColor(brighterHEX(color, 30));
+        setInputBrighterColor(brighterHEX(color, 55));
+        setInputDarkerColor(darkerHEX(color, 10));
       } else {
-        setDominant(darkerHEX(dominantColor, 10));
+        setColor(darkerHEX(color, 10));
       }
     } else {
-      setDominant(brighterHEX(dominantColor, 10));
+      setColor(brighterHEX(color, 10));
     }
-  }, [dominantColor, setDominant]);
+  }, [color, setColor]);
 
   return (
     <InputGroup
