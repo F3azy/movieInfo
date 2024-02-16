@@ -1,5 +1,4 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
-import { useState } from "react";
 import Ratings from "./Ratings";
 import SectionInfo from "./SectionInfo";
 
