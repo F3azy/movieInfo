@@ -74,7 +74,6 @@ const SearchInput = ({ dominantColor, setDominant }) => {
         type="text"
         placeholder="Movie title..."
         _placeholder={{ opacity: 0.8, color: "#F5F3F4" }}
-        value={input}
         onChange={(e) => getName(e)}
         onKeyDown={(e) => searchOnEnter(e)}
       />
