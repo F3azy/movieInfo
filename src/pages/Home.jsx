@@ -1,13 +1,12 @@
 import { useState, useLayoutEffect } from "react";
 import { Box, Flex, Spinner, Image } from "@chakra-ui/react";
 import { MovieInfo, SearchInput, MovieNotFound } from "../components";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useImageDominantColor from "../hooks/useImageDominantColor";
 import useFetch from "../hooks/useFetch";
 
 const Home = () => {
   const { title = "wednesday" } = useParams();
-  const navigate = useNavigate();
 
   const {
     data: movie,
@@ -46,7 +45,6 @@ const Home = () => {
           rowGap="20px"
         >
           <SearchInput
-            moveTo={navigate}
             dominantColor={color}
             setDominant={setColor}
           />

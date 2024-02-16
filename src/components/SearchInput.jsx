@@ -8,12 +8,15 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { brighterHEX, compareHex, darkerHEX } from "../utils/color";
+import { useNavigate } from "react-router-dom";
 
-const SearchInput = ({ moveTo, dominantColor, setDominant }) => {
+const SearchInput = ({ dominantColor, setDominant }) => {
   const [input, setInput] = useState("");
   const [inputColor, setInputColor] = useState("transparent");
   const [inputBrighterColor, setInputBrighterColor] = useState("");
   const [inputDarkerColor, setInputDarkerColor] = useState("");
+
+  const navigate = useNavigate();
 
   function getName(ev) {
     setInput(ev.target.value);
@@ -29,7 +32,7 @@ const SearchInput = ({ moveTo, dominantColor, setDominant }) => {
 
   function searchMovie() {
     if (input !== "") {
-      moveTo("/" + input.toLowerCase());
+      navigate("/" + input.toLowerCase());
     }
   }
 
