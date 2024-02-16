@@ -1,8 +1,18 @@
-import { useEffect, useState } from "react";
-import { getRGB, quantization, rgbToHex } from "../utils/color";
+import { useEffect, useLayoutEffect, useState } from "react";
+import {
+  brighterHEX,
+  compareHex,
+  darkerHEX,
+  getRGB,
+  quantization,
+  rgbToHex,
+} from "../utils/color";
 
 const useImageDominantColor = (source) => {
   const [color, setColor] = useState("");
+  const [base, setBase] = useState("");
+  const [bright, setBright] = useState("");
+  const [dark, setDark] = useState("");
 
   useEffect(() => {
     const image = document.createElement("img");
@@ -31,7 +41,21 @@ const useImageDominantColor = (source) => {
     image.srcset = source;
   }, [source]);
 
-  return [color, setColor];
+  useLayoutEffect(() => {
+    if (compareHex(color, "272B2E")) {
+      if (compareHex(color, "#935163", "<")) {
+        setBase(brighterHEX(color, 30));
+        setBright(brighterHEX(color, 55));
+        setDark(darkerHEX(color, 10));
+      } else {
+        setColor(darkerHEX(color, 10));
+      }
+    } else {
+      setColor(brighterHEX(color, 10));
+    }
+  }, [color]);
+
+  return { base, bright, dark };
 };
 
 export default useImageDominantColor;

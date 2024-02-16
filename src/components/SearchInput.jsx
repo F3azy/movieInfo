@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useState } from "react";
 import {
   Button,
   InputGroup,
@@ -7,19 +7,15 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { brighterHEX, compareHex, darkerHEX } from "../utils/color";
 import { useNavigate } from "react-router-dom";
 import useImageDominantColor from "../hooks/useImageDominantColor";
 
 const SearchInput = ({ bgImg }) => {
   const [input, setInput] = useState("");
-  const [inputColor, setInputColor] = useState("transparent");
-  const [inputBrighterColor, setInputBrighterColor] = useState("");
-  const [inputDarkerColor, setInputDarkerColor] = useState("");
 
   const navigate = useNavigate();
 
-  const [color, setColor] = useImageDominantColor(bgImg);
+  const { base, bright, dark } = useImageDominantColor(bgImg);
 
   function getName(ev) {
     setInput(ev.target.value);
@@ -39,20 +35,6 @@ const SearchInput = ({ bgImg }) => {
     }
   }
 
-  useLayoutEffect(() => {
-    if (compareHex(color, "272B2E")) {
-      if (compareHex(color, "#935163", "<")) {
-        setInputColor(brighterHEX(color, 30));
-        setInputBrighterColor(brighterHEX(color, 55));
-        setInputDarkerColor(darkerHEX(color, 10));
-      } else {
-        setColor(darkerHEX(color, 10));
-      }
-    } else {
-      setColor(brighterHEX(color, 10));
-    }
-  }, [color, setColor]);
-
   return (
     <InputGroup
       size="lg"
@@ -64,16 +46,16 @@ const SearchInput = ({ bgImg }) => {
     >
       <InputLeftElement
         pointerEvents={"none"}
-        children={<SearchIcon color={inputColor} />}
+        children={<SearchIcon color={base} />}
       />
 
       <Input
         borderRadius={{ base: "0", lg: "16px" }}
         borderWidth="2px"
-        borderColor={inputColor}
-        focusBorderColor={inputColor}
-        _groupHover={{ borderColor: inputBrighterColor }}
-        _groupActive={{ borderColor: inputDarkerColor }}
+        borderColor={base}
+        focusBorderColor={base}
+        _groupHover={{ borderColor: bright }}
+        _groupActive={{ borderColor: dark }}
         type="text"
         placeholder="Movie title..."
         _placeholder={{ opacity: 0.8, color: "#F5F3F4" }}
@@ -86,9 +68,9 @@ const SearchInput = ({ bgImg }) => {
           borderRadius={{ base: "0", lg: "0 16px 16px 0" }}
           w="80px"
           size="lg"
-          bgColor={inputColor}
-          _groupHover={{ bgColor: inputBrighterColor }}
-          _groupActive={{ bgColor: inputDarkerColor }}
+          bgColor={base}
+          _groupHover={{ bgColor: bright }}
+          _groupActive={{ bgColor: dark }}
           onClick={() => searchMovie()}
         >
           Search
