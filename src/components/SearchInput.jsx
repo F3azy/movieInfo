@@ -75,8 +75,8 @@ const SearchInput = ({ dominantColor, setDominant }) => {
         placeholder="Movie title..."
         _placeholder={{ opacity: 0.8, color: "#F5F3F4" }}
         value={input}
-        onChange={getName}
-        onKeyDown={searchOnEnter}
+        onChange={(e) => getName(e)}
+        onKeyDown={(e) => searchOnEnter(e)}
       />
 
       <InputRightElement w="80px">
@@ -87,7 +87,7 @@ const SearchInput = ({ dominantColor, setDominant }) => {
           bgColor={inputColor}
           _groupHover={{ bgColor: inputBrighterColor }}
           _groupActive={{ bgColor: inputDarkerColor }}
-          onClick={searchMovie}
+          onClick={() => searchMovie()}
         >
           Search
         </Button>
