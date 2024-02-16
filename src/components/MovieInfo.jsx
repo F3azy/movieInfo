@@ -14,7 +14,7 @@ const MovieInfo = ({
   plot,
 }) => {
 
-  const information = useState([
+  const information = [
     {
       title: "Genre",
       content: genre,
@@ -27,7 +27,7 @@ const MovieInfo = ({
       title: "Plot",
       content: plot,
     },
-  ]);
+  ];
 
   return (
     <Flex
@@ -51,10 +51,10 @@ const MovieInfo = ({
           <Text>{year}</Text>
         </Flex>
 
-        {information[0]?.map((info) => (
+        {information.map((info) => (
           <SectionInfo
             key={info.title}
-            infoTitle={info.title}
+            label={info.title}
             content={info.content}
           />
         ))}
