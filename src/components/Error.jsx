@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 
-const MovieNotFound = ({ err }) => {
+const Error = ({ err }) => {
   return (
     <Flex
       w="100%"
@@ -16,4 +16,4 @@ const MovieNotFound = ({ err }) => {
   );
 };
 
-export default MovieNotFound;
+export default Error;

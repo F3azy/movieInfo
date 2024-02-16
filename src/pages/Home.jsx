@@ -1,6 +1,6 @@
 import { useState, useLayoutEffect } from "react";
 import { Box, Flex, Spinner, Image } from "@chakra-ui/react";
-import { MovieInfo, SearchInput, MovieNotFound } from "../components";
+import { MovieInfo, SearchInput, Error } from "../components";
 import { useParams } from "react-router-dom";
 import useImageDominantColor from "../hooks/useImageDominantColor";
 import useFetch from "../hooks/useFetch";
@@ -54,7 +54,7 @@ const Home = () => {
               <Spinner color="#BA181B" size="xl" />
             </Flex>
           )}
-          {error !== "" && <MovieNotFound err={error} />}
+          {error !== "" && <Error err={error} />}
           {movie && (
             <Flex
               w="100%"
