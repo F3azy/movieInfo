@@ -9,10 +9,7 @@ function App() {
     <ChakraProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
-            <Route index element={<Home />}/>
-            <Route path=":title" element={<Home />} />
-          </Route>
+          <Route path={":title?"} element={<Home />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
