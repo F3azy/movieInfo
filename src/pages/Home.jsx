@@ -19,7 +19,7 @@ const Home = () => {
   const [bgImg, setBgImg] = useState(null);
 
   useLayoutEffect(() => {
-    if (movie && movie.Response !== "False" && movie.Poster !== "N/A")
+    if (movie && movie.Poster !== "N/A")
       setBgImg(movie.Poster);
   }, [movie]);
 
