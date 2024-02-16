@@ -1,41 +1,30 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { Box, Flex, Spinner, Image } from "@chakra-ui/react";
 import { MovieInfo, SearchInput, MovieNotFound } from "../components";
 import { useNavigate, useParams } from "react-router-dom";
-import useImageDominantColor from '../hooks/useImageDominantColor'
+import useImageDominantColor from "../hooks/useImageDominantColor";
+import useFetch from "../hooks/useFetch";
 
 const Home = () => {
   const { title = "wednesday" } = useParams();
   const navigate = useNavigate();
 
-  const query =
+  const {
+    data: movie,
+    loading,
+    error,
+  } = useFetch(
     `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=` +
-    title;
-
-  const [loading, setLoading] = useState(true);
-  const [notFound, setNotFound] = useState(false);
-  const [movie, setMovie] = useState(null);
+      title
+  );
   const [bgImg, setBgImg] = useState(null);
-
-  useEffect(() => {
-    setLoading(true);
-    setNotFound(false);
-    fetch(query)
-      .then((response) => response.json())
-      .then((movieJson) => {
-        setLoading(false);
-        setMovie(movieJson);
-
-        if (movieJson.Response !== "True") setNotFound(true);
-      });
-  }, [query]);
 
   useLayoutEffect(() => {
     if (movie && movie.Response !== "False" && movie.Poster !== "N/A")
       setBgImg(movie.Poster);
   }, [movie]);
 
-  const [color, setColor]= useImageDominantColor(bgImg);
+  const [color, setColor] = useImageDominantColor(bgImg);
 
   return (
     <Box bgImage={bgImg && `url(${bgImg})`} bgSize="cover" bgPosition="center">
@@ -56,15 +45,19 @@ const Home = () => {
           borderRadius={{ base: "0", lg: "36px" }}
           rowGap="20px"
         >
-          <SearchInput moveTo={navigate} dominantColor={color} setDominant={setColor} />
+          <SearchInput
+            moveTo={navigate}
+            dominantColor={color}
+            setDominant={setColor}
+          />
 
-          {loading ? (
+          {loading && (
             <Flex w="100%" minH="90%" justify="center" align="center" p="16px">
               <Spinner color="#BA181B" size="xl" />
             </Flex>
-          ) : notFound ? (
-            <MovieNotFound err={movie.Error} />
-          ) : (
+          )}
+          {error !== "" && <MovieNotFound err={error} />}
+          {movie && (
             <Flex
               w="100%"
               direction={{ base: "column", lg: "row" }}
