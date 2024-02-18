@@ -46,16 +46,16 @@ const SearchInput = () => {
     >
       <InputLeftElement
         pointerEvents={"none"}
-        children={<SearchIcon color={base} />}
+        children={<SearchIcon color={base || "brand.base"} />}
       />
 
       <Input
         borderRadius={{ base: "0", lg: "16px" }}
         borderWidth="2px"
-        borderColor={base}
-        focusBorderColor={base}
-        _groupHover={{ borderColor: bright }}
-        _groupActive={{ borderColor: dark }}
+        borderColor={base || "brand.base"}
+        focusBorderColor={base || "brand.base"}
+        _groupHover={{ borderColor: (bright || "brand.bright") }}
+        _groupActive={{ borderColor: (dark || "brand.dark") }}
         type="text"
         placeholder="Movie title..."
         _placeholder={{ opacity: 0.8, color: "#F5F3F4" }}
@@ -68,9 +68,9 @@ const SearchInput = () => {
           borderRadius={{ base: "0", lg: "0 16px 16px 0" }}
           w="80px"
           size="lg"
-          bgColor={base}
-          _groupHover={{ bgColor: bright }}
-          _groupActive={{ bgColor: dark }}
+          bgColor={base || "brand.base"}
+          _groupHover={{ bgColor: (bright || "brand.bright") }}
+          _groupActive={{ bgColor: (dark || "brand.dark") }}
           onClick={() => searchMovie()}
         >
           Search

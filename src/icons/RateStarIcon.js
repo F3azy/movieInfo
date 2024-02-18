@@ -1,6 +1,10 @@
 import { Icon } from "@chakra-ui/react";
+import { useImageColor } from "../context/ImageColorContext";
 
 const RateStarIcon = ({ Offset, id }) => {
+
+  const { base } = useImageColor();
+
   return (
     <Icon
       width="8"
@@ -12,7 +16,7 @@ const RateStarIcon = ({ Offset, id }) => {
         <linearGradient id={`grad${id}`} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop
             offset={Offset}
-            style={{ stopColor: "#BA181B", stopOpacity: "1" }}
+            style={{ stopColor: (base || "#BA181B"), stopOpacity: "1" }}
           />
           <stop
             offset={Offset}
