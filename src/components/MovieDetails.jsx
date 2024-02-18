@@ -33,7 +33,9 @@ const MovieDetails = ({ movie }) => {
         rowGap={{ base: "16px", md: "20px", lg: "24px" }}
       >
         <Heading size="2xl">{movie.Title}</Heading>
-        {movie.Rating && <Ratings rating={movie.Rating}></Ratings>}
+
+        {movie.Ratings[0] && <Ratings rating={movie.Ratings[0]}></Ratings>}
+
         <Flex justify="space-between" fontSize="20px" fontWeight="100">
           <Text>{movie.Rated}</Text>
           <Text>{movie.Runtime}</Text>
