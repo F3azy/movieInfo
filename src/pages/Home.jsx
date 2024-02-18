@@ -1,6 +1,6 @@
 import { useState, useLayoutEffect } from "react";
-import { Box, Flex, Spinner, Image } from "@chakra-ui/react";
-import { MovieInfo, SearchInput, Error, Loading } from "../components";
+import { Box, Flex, Image } from "@chakra-ui/react";
+import { MovieDetails, SearchInput, Error, Loading } from "../components";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
@@ -62,7 +62,7 @@ const Home = () => {
                 alt={movie.Title}
                 borderRadius="16px"
               />
-              <MovieInfo
+              <MovieDetails
                 title={movie.Title}
                 rating={movie.Ratings[0]}
                 rated={movie.Rated}
