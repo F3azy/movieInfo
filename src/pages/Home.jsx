@@ -1,6 +1,6 @@
 import { useState, useLayoutEffect } from "react";
-import { Box, Flex, Image } from "@chakra-ui/react";
-import { MovieDetails, SearchInput, Error, Loading } from "../components";
+import { Box, Flex } from "@chakra-ui/react";
+import { SearchInput, Error, Loading, MovieCard } from "../components";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
@@ -44,36 +44,7 @@ const Home = () => {
 
           {loading && <Loading />}
           {error !== "" && <Error err={error} />}
-          {movie && (
-            <Flex
-              w="100%"
-              direction={{ base: "column", lg: "row" }}
-              columnGap={{ base: "0", lg: "16px" }}
-              rowGap={{ base: "20px", lg: "0" }}
-            >
-              <Image
-                w={{
-                  base: "auto",
-                  lg: movie.Poster === "N/A" ? "60%" : "auto",
-                }}
-                m={{ base: "0 auto", lg: "0" }}
-                minH="50vh"
-                src={movie.Poster}
-                alt={movie.Title}
-                borderRadius="16px"
-              />
-              <MovieDetails
-                title={movie.Title}
-                rating={movie.Ratings[0]}
-                rated={movie.Rated}
-                runTime={movie.Runtime}
-                year={movie.Year}
-                genre={movie.Genre}
-                cast={movie.Actors}
-                plot={movie.Plot}
-              />
-            </Flex>
-          )}
+          {movie && <MovieCard movie={movie} />}
         </Flex>
       </Flex>
     </Box>
