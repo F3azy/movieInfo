@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useFetch(url) {
+export default function useFetchMovie(title) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [data, setData] = useState(null);
@@ -10,9 +10,12 @@ export default function useFetch(url) {
     setError("");
     setData(null);
 
-    const fetching = async (url) => {
+    const fetching = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(
+          `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=` +
+            title
+        );
 
         if (!response.ok)
           throw new Error(
@@ -23,7 +26,6 @@ export default function useFetch(url) {
         if (json.Response !== "True") throw new Error(json.Error);
 
         setData(json);
-
       } catch (err) {
         setError(err.message);
       } finally {
@@ -31,8 +33,8 @@ export default function useFetch(url) {
       }
     };
 
-    fetching(url);
-  }, [url]);
+    fetching();
+  }, [title]);
 
   return { data, loading, error };
 }

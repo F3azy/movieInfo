@@ -2,19 +2,12 @@ import { useState, useLayoutEffect } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { SearchInput, Error, Loading, MovieCard } from "../components";
 import { useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import useFetchMovie from "../hooks/useFetchMovie";
 
 const Home = () => {
   const { title = "wednesday" } = useParams();
 
-  const {
-    data: movie,
-    loading,
-    error,
-  } = useFetch(
-    `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}&t=` +
-      title
-  );
+  const { data: movie, loading, error } = useFetchMovie(title);
   const [bgImg, setBgImg] = useState(null);
 
   useLayoutEffect(() => {
