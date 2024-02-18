@@ -21,16 +21,7 @@ const MovieCard = ({ movie }) => {
         alt={movie.Title}
         borderRadius="16px"
       />
-      <MovieDetails
-        title={movie.Title}
-        rating={movie.Ratings[0]}
-        rated={movie.Rated}
-        runTime={movie.Runtime}
-        year={movie.Year}
-        genre={movie.Genre}
-        cast={movie.Actors}
-        plot={movie.Plot}
-      />
+      <MovieDetails movie={movie} />
     </Flex>
   );
 };
