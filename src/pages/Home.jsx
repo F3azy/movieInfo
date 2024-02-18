@@ -1,14 +1,16 @@
-import { useState, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { SearchInput, Error, Loading, MovieCard } from "../components";
 import { useParams } from "react-router-dom";
 import useFetchMovie from "../hooks/useFetchMovie";
+import { useImageColor } from "../context/ImageColorContext";
 
 const Home = () => {
   const { title = "wednesday" } = useParams();
 
   const { data: movie, loading, error } = useFetchMovie(title);
-  const [bgImg, setBgImg] = useState(null);
+
+  const { bgImg, setBgImg } = useImageColor();
 
   useLayoutEffect(() => {
     if (movie && movie.Poster !== "N/A") setBgImg(movie.Poster);
@@ -33,8 +35,7 @@ const Home = () => {
           borderRadius={{ base: "0", lg: "36px" }}
           rowGap="20px"
         >
-          <SearchInput bgImg={bgImg} />
-
+          <SearchInput />
           {loading && <Loading />}
           {error !== "" && <Error err={error} />}
           {movie && <MovieCard movie={movie} />}

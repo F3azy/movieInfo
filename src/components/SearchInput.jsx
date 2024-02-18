@@ -8,14 +8,14 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import useImageDominantColor from "../hooks/useImageDominantColor";
+import { useImageColor } from "../context/ImageColorContext";
 
-const SearchInput = ({ bgImg }) => {
+const SearchInput = () => {
   const [input, setInput] = useState("");
 
   const navigate = useNavigate();
 
-  const { base, bright, dark } = useImageDominantColor(bgImg);
+  const { base, bright, dark } = useImageColor();
 
   function getName(ev) {
     setInput(ev.target.value);
