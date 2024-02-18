@@ -14,7 +14,7 @@ const Home = () => {
 
   useLayoutEffect(() => {
     if (movie && movie.Poster !== "N/A") setBgImg(movie.Poster);
-  }, [movie]);
+  }, [movie, setBgImg]);
 
   return (
     <Box bgImage={bgImg && `url(${bgImg})`} bgSize="cover" bgPosition="center">
