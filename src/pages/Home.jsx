@@ -1,6 +1,6 @@
 import { useState, useLayoutEffect } from "react";
 import { Box, Flex, Spinner, Image } from "@chakra-ui/react";
-import { MovieInfo, SearchInput, Error } from "../components";
+import { MovieInfo, SearchInput, Error, Loading } from "../components";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
@@ -42,11 +42,7 @@ const Home = () => {
         >
           <SearchInput bgImg={bgImg} />
 
-          {loading && (
-            <Flex w="100%" minH="90%" justify="center" align="center" p="16px">
-              <Spinner color="#BA181B" size="xl" />
-            </Flex>
-          )}
+          {loading && <Loading />}
           {error !== "" && <Error err={error} />}
           {movie && (
             <Flex
