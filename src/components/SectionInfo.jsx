@@ -1,6 +1,6 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 
-const SmallInfo = ({ label, content }) => {
+const SectionInfo = ({ label, content }) => {
   return (
     <Flex direction="column">
       <Heading size="lg">{label}:</Heading>
@@ -11,4 +11,4 @@ const SmallInfo = ({ label, content }) => {
   );
 };
 
-export default SmallInfo;
+export default SectionInfo;
