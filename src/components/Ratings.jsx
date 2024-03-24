@@ -1,27 +1,9 @@
-import { useState, useEffect } from "react";
+import useRateStarts from "../hooks/useRateStarts";
 import RateStarIcon from "../icons/RateStarIcon";
 import { Flex, Text } from "@chakra-ui/react";
 
 const Ratings = ({ rating }) => {
-  const [rateStars, setRateStars] = useState([]);
-
-  useEffect(() => {
-    setRateStars((old) => (old = []));
-
-    const rate = parseFloat(rating.Value.split("/")[0]) / 2;
-
-    for (let i = 0; i < parseInt(rate); i++)
-      setRateStars((old) => [...old, "100%"]);
-
-    for (let i = 0; i < rate % parseInt(rate); i++)
-      setRateStars((old) => [
-        ...old,
-        (rate % parseInt(rate)).toFixed(2) * 100 + "%",
-      ]);
-
-    for (let i = 0; i < 5 - Math.ceil(rate); i++)
-      setRateStars((old) => [...old, "0%"]);
-  }, [rating]);
+  const rateStars = useRateStarts(rating);
 
   return (
     <Flex align="center" columnGap={{ base: "4px", md: "8px" }}>
