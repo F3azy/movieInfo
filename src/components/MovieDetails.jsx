@@ -1,6 +1,6 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import Ratings from "./Ratings";
-import SectionInfo from "./SectionInfo";
+import SectionInfoList from "./SectionInfoList";
 
 const MovieDetails = ({ movie }) => {
   const sections = [
@@ -42,13 +42,7 @@ const MovieDetails = ({ movie }) => {
           <Text>{movie.Year}</Text>
         </Flex>
 
-        {sections.map((section) => (
-          <SectionInfo
-            key={section.title}
-            label={section.title}
-            content={section.content}
-          />
-        ))}
+        <SectionInfoList sectionsList={sections} />
       </Flex>
     </Flex>
   );
