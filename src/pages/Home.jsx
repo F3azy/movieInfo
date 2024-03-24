@@ -1,14 +1,11 @@
 import { useLayoutEffect } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { SearchInput, Error, Loading, MovieCard } from "../components";
-import { useParams } from "react-router-dom";
 import useFetchMovie from "../hooks/useFetchMovie";
 import { useImageColor } from "../context/ImageColorContext";
 
 const Home = () => {
-  const { title = "wednesday" } = useParams();
-
-  const { data: movie, loading, error } = useFetchMovie(title);
+  const { data: movie, loading, error } = useFetchMovie();
 
   const { bgImg, setBgImg } = useImageColor();
 

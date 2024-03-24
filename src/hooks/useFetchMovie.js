@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export default function useFetchMovie(title) {
+export default function useFetchMovie() {
+
+  const { title = "wednesday" } = useParams();
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [data, setData] = useState(null);
