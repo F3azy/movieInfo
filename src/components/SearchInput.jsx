@@ -12,7 +12,7 @@ import useSearchNavigation from "../hooks/useSearchNavigation";
 const SearchInput = () => {
   const { base, bright, dark } = useImageColor();
 
-  const { getName, searchMovie, searchOnEnter } = useSearchNavigation();
+  const { getInput, search, searchOnEnter } = useSearchNavigation();
 
   return (
     <InputGroup
@@ -38,7 +38,7 @@ const SearchInput = () => {
         type="text"
         placeholder="Movie title..."
         _placeholder={{ opacity: 0.8, color: "#F5F3F4" }}
-        onChange={(e) => getName(e)}
+        onChange={(e) => getInput(e)}
         onKeyDown={(e) => searchOnEnter(e)}
       />
 
@@ -50,7 +50,7 @@ const SearchInput = () => {
           bgColor={base || "brand.base"}
           _groupHover={{ bgColor: bright || "brand.bright" }}
           _groupActive={{ bgColor: dark || "brand.dark" }}
-          onClick={() => searchMovie()}
+          onClick={() => search()}
         >
           Search
         </Button>

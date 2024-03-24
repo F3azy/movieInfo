@@ -6,7 +6,7 @@ export default function useSearchNavigation() {
 
   const navigate = useNavigate();
 
-  function getName(ev) {
+  function getInput(ev) {
     setInput(ev.target.value);
   }
 
@@ -14,15 +14,15 @@ export default function useSearchNavigation() {
     if (ev.key === "Enter") {
       ev.preventDefault();
       ev.target.blur();
-      searchMovie();
+      search();
     }
   }
 
-  function searchMovie() {
+  function search() {
     if (input !== "") {
       navigate("/" + input.toLowerCase());
     }
   }
 
-  return {getName, searchOnEnter, searchMovie};
+  return {getInput, searchOnEnter, search};
 }
